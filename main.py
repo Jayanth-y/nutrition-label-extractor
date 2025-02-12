@@ -8,6 +8,15 @@ class OCRService:
     """Handles OCR extraction using Google Vision API and regex-based data extraction."""
 
     def __init__(self):
+        credentials_json = os.getenv("GOOGLE_APPLICATION_CREDENTIALS")
+
+        if credentials_json:
+            credentials_dict = json.loads(credentials_json)  # Convert string to dictionary
+            credentials = service_account.Credentials.from_service_account_info(credentials_dict)
+            client = vision.ImageAnnotatorClient(credentials=credentials)
+        else:
+            raise ValueError("Missing GOOGLE_APPLICATION_CREDENTIALS_JSON environment variable")
+        
         self.client = vision.ImageAnnotatorClient()
         self.patterns = {
             "Calories": r"(?i)\b(?:Calories|Cal|Energy)\s*[:]?[\s]*([\d]+)[\s]*(?:kcal)?\b",
