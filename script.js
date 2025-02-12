@@ -23,7 +23,7 @@ async function uploadImage() {
     formData.append("file", fileInput);
 
     try {
-        let response = await fetch("http://127.0.0.1:8000/extract", {
+        let response = await fetch("https://nutrition-label-extractor-production.up.railway.app/extract", {
             method: "POST",
             body: formData
         });
