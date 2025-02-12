@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nutrition Label Extractor</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Nutrition Label Extractor</h1>
+    </header>
+
+    <main>
+        <div class="upload-section">
+            <div class="upload-container">
+                <input type="file" id="file-input" accept="image/*">
+                <button id="upload-btn" onclick="uploadImage()">Upload & Extract</button>
+            </div>
+        </div>
+        
+        <div id="output-wrapper">
+            <div id="image-preview-container">
+                <div id="image-placeholder">Image will be displayed here</div>
+                <img id="image-preview" src="" alt="Uploaded Image">
+            </div>
+            
+            <div id="output-container">
+                <button id="copy-btn" onclick="copyText()">Copy All</button>
+                <h3>Extracted Nutrition Information</h3>
+                <div id="output">
+                    <p id="extracted-text">No data extracted yet.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
