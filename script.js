@@ -25,6 +25,10 @@ async function uploadImage() {
     try {
         let response = await fetch("https://nutrition-label-extractor-production.up.railway.app/extract", {
             method: "POST",
+            mode: "cors",
+            headers: {
+                "Accept": "application/json"
+            },
             body: formData
         });
 
