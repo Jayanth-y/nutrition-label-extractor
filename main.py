@@ -5,6 +5,7 @@ from fastapi import FastAPI, File, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 from google.cloud import vision
+from google.oauth2 import service_account
 
 class OCRService:
     """Handles OCR extraction using Google Vision API and regex-based data extraction."""
