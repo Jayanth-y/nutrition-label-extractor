@@ -68,10 +68,10 @@ function formatExtractedText(data) {
         placeholderText.style.visibility = "visible";
         return "<p>No structured data found.</p>";
     }
-
     placeholderText.style.display = "none";
 
     let formattedText = "";
+    formattedText += "<h3>Extracted Nutrition Information</h3><br>"
     for (const [key, value] of Object.entries(data)) {
         formattedText += `<p><strong>${key}:</strong> ${value}</p>`;
     }
