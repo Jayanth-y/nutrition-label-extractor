@@ -33,42 +33,44 @@ class OCRService:
             raise ValueError("Missing GOOGLE_APPLICATION_CREDENTIALS_JSON environment variable")
         
         self.client = vision.ImageAnnotatorClient()
+
         self.patterns = {
-            "Calories": r"(?i)\b(?:Calories|Cal|Energy)\s*[:]?[\s]*([\d]+)[\s]*(?:kcal)?\b",
-            "Serving Size": r"(?i)\bServing Size\s*[:]?[\s]*([\d]+(?:\s?[a-zA-Z]+)?(?:\s?\([\d]+[a-zA-Z]*\))?)",
-            "Servings Per Container": r"(?i)\bServings Per Container\s*[:]?[\s]*([\d]+)",
-
+            # Serving & Energy
+            "Calories": r"(?i)\b(?:Calories|Cal|Energy)\s*[:]?[\s]*([\d]+(?:\.\d+)?)[\s]*(?:kcal)?\b",
+            "Serving Size": r"(?i)\bServing Size\s*[:]?[\s]*([\d]+(?:\.\d+)?(?:\s?[a-zA-Z]+)?(?:\s?\([\d]+(?:\.\d+)?[a-zA-Z]*\))?)",
+            "Servings Per Container": r"(?i)\bServings Per Container\s*[:]?[\s]*([\d]+(?:\.\d+)?)",
+        
             # Fat Content
-            "Total Fat": r"Total Fat[\s]*[:]?[\s]*([\d]+g)",
-            "Saturated Fat": r"Saturated Fat[\s]*[:]?[\s]*([\d]+g)",
-            "Trans Fat": r"Trans Fat[\s]*[:]?[\s]*([\d]+g)",
-            "Polyunsaturated Fat": r"Polyunsaturated Fat[\s]*[:]?[\s]*([\d]+g)",
-            "Monounsaturated Fat": r"Monounsaturated Fat[\s]*[:]?[\s]*([\d]+g)",
-
+            "Total Fat": r"Total Fat[\s]*[:]?[\s]*([\d]+(?:\.\d+)?g)",
+            "Saturated Fat": r"Saturated Fat[\s]*[:]?[\s]*([\d]+(?:\.\d+)?g)",
+            "Trans Fat": r"Trans Fat[\s]*[:]?[\s]*([\d]+(?:\.\d+)?g)",
+            "Polyunsaturated Fat": r"Polyunsaturated Fat[\s]*[:]?[\s]*([\d]+(?:\.\d+)?g)",
+            "Monounsaturated Fat": r"Monounsaturated Fat[\s]*[:]?[\s]*([\d]+(?:\.\d+)?g)",
+        
             # Cholesterol & Sodium
-            "Cholesterol": r"Cholesterol[\s]*[:]?[\s]*([\d]+mg)",
-            "Sodium": r"Sodium[\s]*[:]?[\s]*([\d]+mg)",
-
+            "Cholesterol": r"Cholesterol[\s]*[:]?[\s]*([\d]+(?:\.\d+)?mg)",
+            "Sodium": r"Sodium[\s]*[:]?[\s]*([\d]+(?:\.\d+)?mg)",
+        
             # Carbohydrates & Fiber
-            "Total Carbohydrates": r"Total Carbohydrate[\s]*[:]?[\s]*([\d]+g)",
-            "Dietary Fiber": r"Dietary Fiber[\s]*[:]?[\s]*([\d]+g)",
-            "Sugars": r"Sugars[\s]*[:]?[\s]*([\d]+g)",
-            "Added Sugars": r"Added Sugars[\s]*[:]?[\s]*([\d]+g)",
-
+            "Total Carbohydrates": r"Total Carbohydrate[\s]*[:]?[\s]*([\d]+(?:\.\d+)?g)",
+            "Dietary Fiber": r"Dietary Fiber[\s]*[:]?[\s]*([\d]+(?:\.\d+)?g)",
+            "Sugars": r"Sugars[\s]*[:]?[\s]*([\d]+(?:\.\d+)?g)",
+            "Added Sugars": r"Added Sugars[\s]*[:]?[\s]*([\d]+(?:\.\d+)?g)",
+        
             # Protein & Vitamins
-            "Protein": r"Protein[\s]*[:]?[\s]*([\d]+g)",
-            "Vitamin D": r"Vitamin D[\s]*[:]?[\s]*([\d]+mcg)",
-            "Calcium": r"Calcium[\s]*[:]?[\s]*([\d]+mg)",
-            "Iron": r"Iron[\s]*[:]?[\s]*([\d]+mg)",
-            "Potassium": r"Potassium[\s]*[:]?[\s]*([\d]+mg)",
-
+            "Protein": r"Protein[\s]*[:]?[\s]*([\d]+(?:\.\d+)?g)",
+            "Vitamin D": r"Vitamin D[\s]*[:]?[\s]*([\d]+(?:\.\d+)?mcg)",
+            "Calcium": r"Calcium[\s]*[:]?[\s]*([\d]+(?:\.\d+)?mg)",
+            "Iron": r"Iron[\s]*[:]?[\s]*([\d]+(?:\.\d+)?mg)",
+            "Potassium": r"Potassium[\s]*[:]?[\s]*([\d]+(?:\.\d+)?mg)",
+        
             # Additional Nutrients (Optional)
-            "Vitamin A": r"Vitamin A[\s]*[:]?[\s]*([\d]+mcg)",
-            "Vitamin C": r"Vitamin C[\s]*[:]?[\s]*([\d]+mg)",
-            "Magnesium": r"Magnesium[\s]*[:]?[\s]*([\d]+mg)",
-            "Zinc": r"Zinc[\s]*[:]?[\s]*([\d]+mg)"
+            "Vitamin A": r"Vitamin A[\s]*[:]?[\s]*([\d]+(?:\.\d+)?mcg)",
+            "Vitamin C": r"Vitamin C[\s]*[:]?[\s]*([\d]+(?:\.\d+)?mg)",
+            "Magnesium": r"Magnesium[\s]*[:]?[\s]*([\d]+(?:\.\d+)?mg)",
+            "Zinc": r"Zinc[\s]*[:]?[\s]*([\d]+(?:\.\d+)?mg)"
         }
-
+    
     def extract_text(self, image_bytes: bytes) -> str:
         """Extracts text from the image using Google Vision API."""
         image = vision.Image(content=image_bytes)
