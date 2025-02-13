@@ -61,23 +61,18 @@ const nutritionOrder = [
 
 // Function to Format Extracted Data in Correct Order
 function formatExtractedText(data) {
-    let outputDiv = document.getElementById("output");
-    let placeholderText = document.getElementById("extracted-text");
-
     if (!data || Object.keys(data).length === 0) {
-        placeholderText.style.visibility = "visible";
         return "<p>No structured data found.</p>";
     }
-    placeholderText.style.display = "none";
-
     let formattedText = "";
     formattedText += "<h3>Extracted Nutrition Information</h3><br>"
-    for (const [key, value] of Object.entries(data)) {
-        formattedText += `<p><strong>${key}:</strong> ${value}</p>`;
+    for (const key of nutritionOrder) {
+        if (data[key]) {  // Only print if data exists
+            formattedText += `<p><strong>${key}:</strong> ${data[key]}</p>`;
+        }
     }
     return formattedText;
 }
-
 
 // Improved Copy Function (No Alerts)
 function copyText() {
