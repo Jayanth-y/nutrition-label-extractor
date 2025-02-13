@@ -51,12 +51,12 @@ async function uploadImage() {
 
 // Order of Nutrition Labels (Same as regex patterns in backend)
 const nutritionOrder = [
-    "Calories", "Serving Size", "Servings Per Container",
+    "Serving Size", "Servings Per Container", "Calories",
     "Total Fat", "Saturated Fat", "Trans Fat", "Polyunsaturated Fat", "Monounsaturated Fat",
     "Cholesterol", "Sodium",
     "Total Carbohydrates", "Dietary Fiber", "Sugars", "Added Sugars",
     "Protein", "Vitamin D", "Calcium", "Iron", "Potassium",
-    "Vitamin A", "Vitamin C", "Magnesium"
+    "Vitamin A", "Vitamin C", "Magnesium", "Zinc"
 ];
 
 // Function to Format Extracted Data in Correct Order
