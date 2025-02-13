@@ -109,6 +109,19 @@ input[type="file"] {
     left: 0;
 }
 
+/* Center the output placeholder like the image preview */
+#output-placeholder {
+    color: #888;
+    font-size: 16px;
+    position: absolute;
+    text-align: center;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;  /* Make it take the full output container height */
+}
+
 /* Output Container Styling */
 #output-container {
     flex: 1;
@@ -118,13 +131,14 @@ input[type="file"] {
     border-radius: 8px;
     text-align: left;
     width: 100%;
-    height: 600px;
+    height: 600px;  /* ✅ Ensure it matches the image preview size */
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: center;
+    align-items: center;
+    position: relative;
     overflow: hidden;
 }
-
 
 h3 {
     text-align: center;
