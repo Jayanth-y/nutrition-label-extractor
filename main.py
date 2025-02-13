@@ -11,11 +11,22 @@ class OCRService:
     """Handles OCR extraction using Google Vision API and regex-based data extraction."""
 
     def __init__(self):
-        credentials_json = os.getenv("GOOGLE_APPLICATION_CREDENTIALS")
+        # Load credentials from Railway environment variable
+        credentials_json = os.getenv("GOOGLE_APPLICATION_CREDENTIALS_JSON")
 
         if credentials_json:
-            credentials_dict = json.loads(credentials_json)  # Convert string to dictionary
-            credentials = service_account.Credentials.from_service_account_info(credentials_dict)
+            credentials_dict = json.loads(credentials_json)  # Convert JSON string to dictionary
+
+            # Write the JSON to a file in the /app directory
+            credentials_path = "/app/service-account.json"
+            with open(credentials_path, "w") as f:
+                json.dump(credentials_dict, f)
+        
+            # ✅ Set environment variable for Google to find the file
+            os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = credentials_path
+        
+            # ✅ Load Google Cloud Vision API client
+            credentials = service_account.Credentials.from_service_account_file(credentials_path)
             client = vision.ImageAnnotatorClient(credentials=credentials)
         else:
             raise ValueError("Missing GOOGLE_APPLICATION_CREDENTIALS_JSON environment variable")
