@@ -65,7 +65,8 @@ class OCRService:
             # Additional Nutrients (Optional)
             "Vitamin A": r"Vitamin A[\s]*[:]?[\s]*([\d]+mcg)",
             "Vitamin C": r"Vitamin C[\s]*[:]?[\s]*([\d]+mg)",
-            "Magnesium": r"Magnesium[\s]*[:]?[\s]*([\d]+mg)"
+            "Magnesium": r"Magnesium[\s]*[:]?[\s]*([\d]+mg)",
+            "Zinc": r"Zinc[\s]*[:]?[\s]*([\d]+mg)"
         }
 
     def extract_text(self, image_bytes: bytes) -> str:
