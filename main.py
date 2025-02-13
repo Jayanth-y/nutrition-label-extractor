@@ -22,10 +22,10 @@ class OCRService:
             with open(credentials_path, "w") as f:
                 json.dump(credentials_dict, f)
         
-            # ✅ Set environment variable for Google to find the file
+            # Set environment variable for Google to find the file
             os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = credentials_path
         
-            # ✅ Load Google Cloud Vision API client
+            # Load Google Cloud Vision API client
             credentials = service_account.Credentials.from_service_account_file(credentials_path)
             client = vision.ImageAnnotatorClient(credentials=credentials)
         else:
