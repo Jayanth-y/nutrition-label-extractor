@@ -1,6 +1,10 @@
 fastapi
 uvicorn
 google-cloud-vision
+google-auth
+google-auth-oauthlib
+google-auth-httplib2
+google-auth-transport
+google-api-python-client
 numpy
 opencv-python
-python-multipart
