@@ -59,7 +59,6 @@ input[type="file"] {
     background-color: #0056b3;
 }
 
-
 /* Output Wrapper (Contains Image & Extracted Data) */
 #output-wrapper {
     display: flex;
@@ -109,42 +108,49 @@ input[type="file"] {
     left: 0;
 }
 
-/* Center the output placeholder like the image preview */
-#output-placeholder {
-    color: #888;
-    font-size: 16px;
-    position: absolute;
-    text-align: center;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;  /* Make it take the full output container height */
-}
-
-/* Output Container Styling */
+/* Output Container */
 #output-container {
     flex: 1;
     background-color: #292929;
     border: 1px solid #444;
     padding: 20px;
     border-radius: 8px;
-    text-align: left;
+    text-align: center; /* Centers the heading */
     width: 100%;
-    height: 600px;  /* ✅ Ensure it matches the image preview size */
+    height: 600px; /* Matches the image preview size */
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
     position: relative;
-    overflow: hidden;
 }
 
-h3 {
-    text-align: center;
+/* Output Content Wrapper */
+#output-content {
+    flex: 1;  /* Ensures it takes the remaining space */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+/* Extracted Nutrition Heading */
+#output-container h3 {
+    margin-top: 0;
+    font-size: 20px;
     color: #FFD700;
 }
 
+/* Center the output placeholder like the image preview */
+#output-placeholder {
+    color: #888;
+    font-size: 16px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%; /* Make it take the full output container height */
+}
+
+/* Output Text Styling */
 #output p {
     margin: 10px 0;
     font-size: 16px;
