@@ -3,7 +3,8 @@
 To run this project, simply visit the link above. No installation required!
 
 📌 Overview
-Nutrition Label Extractor is a web-based application that allows users to extract nutritional information from food labels using Google Vision API. This project leverages FastAPI for backend processing and a modern, responsive frontend to provide a seamless user experience.
+Nutrition Label Extractor is a web-based application that allows users to extract nutritional information from food labels using Google Vision API. 
+This project leverages FastAPI for backend processing and a modern, responsive frontend to provide a seamless user experience.
 
 ✅ Upload a nutrition label image
 ✅ Extract key nutrition values (Calories, Protein, Fats, Carbs, Vitamins, etc.)
@@ -30,7 +31,7 @@ Deployment: Railway (Backend) + GitHub Pages (Frontend)
 4️⃣ Extracted data is displayed in a clean, formatted output.
 5️⃣ Click "Copy All" to copy extracted values for easy sharing.
 
-Response (JSON)
+Response (JSON) : 
 {
     "Calories": "200",
     "Total Fat": "8g",
@@ -40,7 +41,7 @@ Response (JSON)
 
 📦 Installation (For Local Development)
 If you want to run this project locally:
-1️⃣ Clone the Repository
+1️⃣ Clone the Repository:
     git clone https://github.com/jayanth-y/nutrition-label-extractor.git
     cd nutrition-label-extractor
 2️⃣ Setup Backend (FastAPI)
